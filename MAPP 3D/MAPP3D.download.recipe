@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of MAPP 3D and verifies the code signature.
+
+Set DOWNLOAD_ARCH to "arm64" for Apple Silicon or "x86-64" for Intel.</string>
+    <key>Identifier</key>
+    <string>com.github.dataJAR-recipes.download.MAPP 3D</string>
+    <key>Input</key>
+    <dict>
+        <key>DOWNLOAD_ARCH</key>
+        <string>x86-64</string>
+        <key>NAME</key>
+        <string>MAPP3D</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>1.1</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>re_pattern</key>
+                <string>(https://download\.sw\.meyersound\.com/software/mapp-3d/[0-9]+(?:\.[0-9]+)+/mapp-3d_([0-9]+(?:\.[0-9]+)+)_%DOWNLOAD_ARCH%\.pkg)</string>
+                <key>result_output_var_name</key>
+                <string>DOWNLOAD_URL</string>
+                <key>url</key>
+                <string>https://software.meyersound.com/downloads/software/mapp-3d/_payload.json</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>filename</key>
+                <string>%NAME%-%DOWNLOAD_ARCH%.pkg</string>
+                <key>url</key>
+                <string>%DOWNLOAD_URL%</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>expected_authority_names</key>
+                <array>
+                    <string>Developer ID Installer: Meyer Sound (5XD27G7646)</string>
+                    <string>Developer ID Certification Authority</string>
+                    <string>Apple Root CA</string>
+                </array>
+                <key>input_path</key>
+                <string>%pathname%</string>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+    </array>
+</dict>
+</plist>
