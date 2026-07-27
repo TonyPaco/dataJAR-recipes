@@ -8,7 +8,7 @@ Getting started docs: https://antigravity.google/docs/cli/getting-started
 The tar.gz archive contains a binary named 'antigravity', but the vendor install script (install.sh) copies it to the destination as 'agy' — this is the intended CLI command name used in all vendor documentation.
 
 For Intel use: "x64" in the DOWNLOAD_ARCH variable
-For Apple Silicon use: "arm64" in both the DOWNLOAD_ARCH</string>
+For Apple Silicon use: "arm64" in both the DOWNLOAD_ARCH variable</string>
     <key>Description</key>
     <string>Downloads the latest version of Antigravity CLI.
 
