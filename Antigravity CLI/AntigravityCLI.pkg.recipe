@@ -58,7 +58,7 @@ The tar.gz archive contains a binary named 'antigravity', but the vendor install
                 <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/pkg_root/usr/local/bin/agy</string>
                 <key>overwrite</key>
-                <string>true</string>
+                <true/>
                 <key>source_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%/antigravity</string>
             </dict>

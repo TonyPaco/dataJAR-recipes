@@ -10,7 +10,11 @@ The tar.gz archive contains a binary named 'antigravity', but the vendor install
 For Intel use: "x64" in the DOWNLOAD_ARCH variable
 For Apple Silicon use: "arm64" in both the DOWNLOAD_ARCH</string>
     <key>Description</key>
-    <string>Downloads the latest version of Antigravity CLI.</string>
+    <string>Downloads the latest version of Antigravity CLI.
+
+Set PRERELEASE to a non-empty string to download prereleases, either
+via Input in an override or via the -k option,
+i.e.: `-k PRERELEASE=yes`</string>
     <key>Identifier</key>
     <string>com.github.dataJAR-recipes.download.Antigravity CLI</string>
     <key>Input</key>
