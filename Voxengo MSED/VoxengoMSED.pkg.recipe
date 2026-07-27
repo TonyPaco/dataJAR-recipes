@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the latest version of Voxengo MSED and creates a package that installs all plugin formats (AU, VST, VST3, AAX).</string>
     <key>Identifier</key>
-    <string>com.github.dataJAR-recipes.pkg.VoxengoMSED</string>
+    <string>com.github.dataJAR-recipes.pkg.Voxengo MSED</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
@@ -16,7 +16,7 @@
     <key>MinimumVersion</key>
     <string>1.1</string>
     <key>ParentRecipe</key>
-    <string>com.github.dataJAR-recipes.download.VoxengoMSED</string>
+    <string>com.github.dataJAR-recipes.download.Voxengo MSED</string>
     <key>Process</key>
     <array>
         <dict>

@@ -7,7 +7,7 @@
 
 minimum_os_version is scraped from the product page. Set DERIVE_MIN_OS to a non-empty string to instead derive it from the bundle via MunkiInstallsItemsCreator. This requires a minimum AutoPkg version of 2.7 please update if you're not already running it.</string>
     <key>Identifier</key>
-    <string>com.github.dataJAR-recipes.munki.VoxengoMSED</string>
+    <string>com.github.dataJAR-recipes.munki.Voxengo MSED</string>
     <key>Input</key>
     <dict>
         <key>DERIVE_MIN_OS</key>
@@ -39,7 +39,7 @@ minimum_os_version is scraped from the product page. Set DERIVE_MIN_OS to a non-
     <key>MinimumVersion</key>
     <string>2.7</string>
     <key>ParentRecipe</key>
-    <string>com.github.dataJAR-recipes.pkg.VoxengoMSED</string>
+    <string>com.github.dataJAR-recipes.pkg.Voxengo MSED</string>
     <key>Process</key>
     <array>
         <dict>

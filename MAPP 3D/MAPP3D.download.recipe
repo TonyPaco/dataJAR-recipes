@@ -7,7 +7,7 @@
 
 Set DOWNLOAD_ARCH to "arm64" for Apple Silicon or "x86-64" for Intel.</string>
     <key>Identifier</key>
-    <string>com.github.dataJAR-recipes.download.MAPP3D</string>
+    <string>com.github.dataJAR-recipes.download.MAPP 3D</string>
     <key>Input</key>
     <dict>
         <key>DOWNLOAD_ARCH</key>

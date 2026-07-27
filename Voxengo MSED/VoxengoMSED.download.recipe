@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the latest version of Voxengo MSED and verifies the code signature.</string>
     <key>Identifier</key>
-    <string>com.github.dataJAR-recipes.download.VoxengoMSED</string>
+    <string>com.github.dataJAR-recipes.download.Voxengo MSED</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

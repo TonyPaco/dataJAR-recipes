@@ -8,7 +8,7 @@
 For Apple Silicon use "arm64" for both DOWNLOAD_ARCH and SUPPORTED_ARCH.
 For Intel use "x86-64" for DOWNLOAD_ARCH and "x86_64" for SUPPORTED_ARCH.</string>
     <key>Identifier</key>
-    <string>com.github.dataJAR-recipes.munki.MAPP3D</string>
+    <string>com.github.dataJAR-recipes.munki.MAPP 3D</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
@@ -48,7 +48,7 @@ For Intel use "x86-64" for DOWNLOAD_ARCH and "x86_64" for SUPPORTED_ARCH.</strin
     <key>MinimumVersion</key>
     <string>1.1</string>
     <key>ParentRecipe</key>
-    <string>com.github.dataJAR-recipes.download.MAPP3D</string>
+    <string>com.github.dataJAR-recipes.download.MAPP 3D</string>
     <key>Process</key>
     <array>
         <dict>
