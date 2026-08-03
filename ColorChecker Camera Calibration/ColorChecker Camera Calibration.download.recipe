@@ -26,7 +26,7 @@
                     <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.1 Safari/605.1.15</string>
                 </dict>
                 <key>url</key>
-                <string>https://xritephoto.com/downloader.aspx?FileID=2215&amp;Type=M&amp;returnurl=%2fph_product_overview.aspx%3fID%3d1115%26Action%3dSupport%26SoftwareID%3d2215</string>
+                <string>https://my.xrite.com/downloader.aspx?FileID=2324&amp;Type=M</string>
             </dict>
             <key>Processor</key>
             <string>URLDownloader</string>
@@ -58,7 +58,7 @@
                     <string>Apple Root CA</string>
                 </array>
                 <key>input_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/ColorChecker Camera Calibration.pkg</string>
+                <string>%RECIPE_CACHE_DIR%/%NAME%/%NAME%.pkg</string>
             </dict>
             <key>Processor</key>
             <string>CodeSignatureVerifier</string>
