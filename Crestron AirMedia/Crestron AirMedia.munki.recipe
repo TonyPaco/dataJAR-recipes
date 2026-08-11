@@ -39,7 +39,7 @@ Transform any room into a high-performance BYOD space.</string>
         </dict>
     </dict>
     <key>MinimumVersion</key>
-    <string>1.1</string>
+    <string>2.6</string>
     <key>ParentRecipe</key>
     <string>com.github.dataJAR-recipes.download.Crestron AirMedia</string>
     <key>Process</key>
