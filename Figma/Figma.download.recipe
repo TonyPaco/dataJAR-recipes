@@ -17,7 +17,7 @@
         <string>https://desktop.figma.com/mac-arm/Figma.zip</string>
     </dict>
     <key>MinimumVersion</key>
-    <string>0.5.1</string>
+    <string>1.0.3</string>
     <key>Process</key>
     <array>
         <dict>

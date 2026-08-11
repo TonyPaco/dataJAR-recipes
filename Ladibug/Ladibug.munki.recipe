@@ -104,7 +104,7 @@ sudo tccutil reset All tw.com.lumens.Ladibug || true</string>
         </dict>
     </dict>
     <key>MinimumVersion</key>
-    <string>0.5.0</string>
+    <string>2.6</string>
     <key>ParentRecipe</key>
     <string>com.github.dataJAR-recipes.download.Ladibug</string>
     <key>Process</key>

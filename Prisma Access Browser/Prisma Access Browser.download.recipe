@@ -18,7 +18,7 @@ To download Universal use: "universal" in the DOWNLOAD_ARCH variable</string>
         <string>PrismaAccessBrowser</string>
     </dict>
     <key>MinimumVersion</key>
-    <string>1.1</string>
+    <string>2.7.1</string>
     <key>Process</key>
     <array>
         <dict>

@@ -33,7 +33,7 @@
         </dict>
     </dict>
     <key>MinimumVersion</key>
-    <string>1.1</string>
+    <string>2.6</string>
     <key>ParentRecipe</key>
     <string>com.github.dataJAR-recipes.download.PS Remote Play</string>
     <key>Process</key>
