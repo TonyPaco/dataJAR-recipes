@@ -8,15 +8,15 @@
 To download Apple Silicon use: "aarch64" in the DOWNLOAD_ARCH variable
 To download Intel use: "x64" in the DOWNLOAD_ARCH variable
 
-Set MAJOR_VERSION to the major version you wish to download. Currently: 8, 11, 15, 16, 17, 18, 19, 20, 21, 22 or 23</string>
+Set MAJOR_VERSION to the major version you wish to download. Currently: 8, 11, 15, 16, 17, 18, 19, 20, 21, 22, 24, 25 or 26</string>
     <key>Identifier</key>
     <string>com.github.dataJAR-recipes.download.Amazon Corretto</string>
     <key>Input</key>
     <dict>
         <key>DOWNLOAD_ARCH</key>
-        <string></string>
+        <string>aarch64</string>
         <key>MAJOR_VERSION</key>
-        <string></string>
+        <string>26</string>
         <key>NAME</key>
         <string>AmazonCorretto%MAJOR_VERSION%</string>
     </dict>
