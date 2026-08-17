@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest MadeToTag for Adobe InDesign %INDESIGN_YEAR% (Mac) by scraping the version from the axaio download page.</string>
+    <key>Identifier</key>
+    <string>com.github.dataJAR-recipes.download.MadeToTag</string>
+    <key>Input</key>
+    <dict>
+        <key>INDESIGN_YEAR</key>
+        <string>2025</string>
+        <key>NAME</key>
+        <string>MadeToTag%INDESIGN_YEAR%</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>2.3</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>re_pattern</key>
+                <string>product=MadeToTag_InDesign_%INDESIGN_YEAR%[^v]*version=([0-9-]+)</string>
+                <key>result_output_var_name</key>
+                <string>VERSION</string>
+                <key>url</key>
+                <string>https://www.axaio.com/doku.php/en:download</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>filename</key>
+                <string>%NAME%.pkg</string>
+                <key>url</key>
+                <string>https://www.axaio.com/adownloads/software/MadeToTag_InDesign_%INDESIGN_YEAR%_Mac_(%VERSION%).pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>expected_authority_names</key>
+                <array>
+                    <string>Developer ID Application: axaio software GmbH (G5FHR2G7YZ)</string>
+                    <string>Developer ID Certification Authority</string>
+                    <string>Apple Root CA</string>
+                </array>
+                <key>input_path</key>
+                <string>%pathname%</string>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+    </array>
+</dict>
+</plist>
