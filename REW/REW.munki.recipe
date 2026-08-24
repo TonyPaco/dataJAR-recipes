@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Imports the latest version of Room EQ Wizard into Munki.</string>
+    <key>Identifier</key>
+    <string>com.github.dataJAR-recipes.munki.REW</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>REW</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/%NAME%</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>description</key>
+            <string>Room EQ Wizard (REW) is a free room acoustics analysis tool for measuring and analysing room and loudspeaker responses.</string>
+            <key>developer</key>
+            <string>John Mulcahy</string>
+            <key>display_name</key>
+            <string>Room EQ Wizard</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+            <key>unattended_uninstall</key>
+            <true/>
+            <key>uninstall_method</key>
+            <string>uninstall_script</string>
+            <key>uninstall_script</key>
+            <string>#!/bin/zsh --no-rcs
+
+if [[ -d "/Applications/REW" ]]; then
+    /bin/rm -rf "/Applications/REW"
+fi
+
+/usr/sbin/pkgutil --forget com.roomeqwizard.installer 2&gt;/dev/null
+exit 0
+</string>
+        </dict>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>2.7</string>
+    <key>ParentRecipe</key>
+    <string>com.github.dataJAR-recipes.pkg.REW</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>additional_pkginfo</key>
+                <dict>
+                    <key>installs</key>
+                    <array>
+                        <dict>
+                            <key>CFBundleIdentifier</key>
+                            <string>roomeqwizard.launcher</string>
+                            <key>CFBundleName</key>
+                            <string>REW</string>
+                            <key>CFBundleShortVersionString</key>
+                            <string>%VERSION%</string>
+                            <key>CFBundleVersion</key>
+                            <string>%VERSION%</string>
+                            <key>path</key>
+                            <string>/Applications/REW/REW.app</string>
+                            <key>type</key>
+                            <string>application</string>
+                            <key>version_comparison_key</key>
+                            <string>CFBundleShortVersionString</string>
+                        </dict>
+                    </array>
+                    <key>version</key>
+                    <string>%VERSION%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%pkg_path%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+    </array>
+</dict>
+</plist>

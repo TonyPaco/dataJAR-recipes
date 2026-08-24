@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Comment</key>
+    <string>Creates a macOS installer package for REW with a postinstall script.</string>
+    <key>Description</key>
+    <string>Creates a macOS installer package from the REW Installer app, deploying to /tmp and running the installer silently via a postinstall script.</string>
+    <key>Identifier</key>
+    <string>com.github.dataJAR-recipes.pkg.REW</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>REW</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>1.1</string>
+    <key>ParentRecipe</key>
+    <string>com.github.dataJAR-recipes.download.REW</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgdirs</key>
+                <dict>
+                    <key>tmp</key>
+                    <string>0755</string>
+                </dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/pkg_root</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgdirs</key>
+                <dict/>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/scripts</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/pkg_root/tmp/REW Installer.app</string>
+                <key>overwrite</key>
+                <string>true</string>
+                <key>source_path</key>
+                <string>%pathname%/REW Installer.app</string>
+            </dict>
+            <key>Processor</key>
+            <string>Copier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>file_content</key>
+                <string>#!/bin/zsh --no-rcs
+# Post-install script: Run the REW installer silently
+# Binary name confirmed from REW Installer.app/Contents/Info.plist CFBundleExecutable
+INSTALLER_BIN="/tmp/REW Installer.app/Contents/MacOS/JavaApplicationStub"
+
+if [[ -x "$INSTALLER_BIN" ]]; then
+    "$INSTALLER_BIN" -q
+    RESULT=$?
+    if [[ $RESULT -eq 0 ]]; then
+        rm -rf "/tmp/REW Installer.app"
+    else
+        echo "Error: Installer exited with code $RESULT"
+    fi
+    exit $RESULT
+else
+    echo "Error: Installer binary not found at $INSTALLER_BIN"
+    exit 1
+fi
+</string>
+                <key>file_mode</key>
+                <string>0755</string>
+                <key>file_path</key>
+                <string>%RECIPE_CACHE_DIR%/scripts/postinstall</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileCreator</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>force_pkg_build</key>
+                <string>true</string>
+                <key>install_location</key>
+                <string>/</string>
+                <key>pkg_request</key>
+                <dict>
+                    <key>id</key>
+                    <string>com.roomeqwizard.installer</string>
+                    <key>options</key>
+                    <string>purge_ds_store</string>
+                    <key>pkgdir</key>
+                    <string>%RECIPE_CACHE_DIR%</string>
+                    <key>pkgname</key>
+                    <string>%NAME%-%VERSION%</string>
+                    <key>pkgroot</key>
+                    <string>%RECIPE_CACHE_DIR%/pkg_root</string>
+                    <key>scripts</key>
+                    <string>%RECIPE_CACHE_DIR%/scripts</string>
+                    <key>version</key>
+                    <string>%VERSION%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PkgCreator</string>
+        </dict>
+    </array>
+</dict>
+</plist>
