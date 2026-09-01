@@ -19,7 +19,7 @@
             <key>Arguments</key>
             <dict>
                 <key>re_pattern</key>
-                <string>adsklicensinginstaller-mac-([0-9]+(.[0-9]+)+).tar.gz</string>
+                <string>AdskLicensingInstaller-mac-([0-9]+(?:\.[0-9]+)+)\.tar\.gz</string>
                 <key>request_headers</key>
                 <dict>
                     <key>Accept</key>
@@ -58,7 +58,7 @@
                     <string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.4 Safari/605.1.15</string>
                 </dict>
                 <key>url</key>
-                <string>https://damassets.autodesk.net/content/dam/autodesk/www/files/adsklicensinginstaller-mac-%VERSION%.tar.gz</string>
+                <string>https://damassets.autodesk.net/content/dam/autodesk/www/files/AdskLicensingInstaller-mac-%VERSION%.tar.gz</string>
             </dict>
             <key>Processor</key>
             <string>URLDownloader</string>
