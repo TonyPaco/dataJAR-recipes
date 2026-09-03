@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Comment</key>
+    <string>Imports Oxygen XML Author into Munki.</string>
+    <key>Description</key>
+    <string>Imports Oxygen XML Author into Munki.
+
+Set the DERIVE_MIN_OS variable to a non-empty string to set the minimum_os_version via MunkiInstallsItemsCreator.</string>
+    <key>Identifier</key>
+    <string>com.github.dataJAR-recipes.munki.OxygenXMLAuthor</string>
+    <key>Input</key>
+    <dict>
+        <key>DERIVE_MIN_OS</key>
+        <string>YES</string>
+        <key>NAME</key>
+        <string>OxygenXMLAuthor</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/%NAME%</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>blocking_applications</key>
+            <array>
+                <string>Diff Directories.app</string>
+                <string>Diff Files.app</string>
+                <string>Oxygen XML Author.app</string>
+                <string>Syncro SVN Client.app</string>
+            </array>
+            <key>catalogs</key>
+            <array>
+                <string>testing</string>
+            </array>
+            <key>category</key>
+            <string>Developer Tools</string>
+            <key>description</key>
+            <string>Oxygen XML Author is a professional XML editor and content authoring tool.</string>
+            <key>developer</key>
+            <string>Syncro Soft</string>
+            <key>display_name</key>
+            <string>Oxygen XML Author</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+            <key>unattended_uninstall</key>
+            <true/>
+            <key>uninstall_method</key>
+            <string>uninstall_script</string>
+            <key>uninstall_script</key>
+            <string>#!/bin/zsh --no-rcs
+
+if [[ -d "/Applications/Oxygen XML Author" ]]; then
+    /bin/rm -rf "/Applications/Oxygen XML Author"
+fi
+
+if /usr/sbin/pkgutil --pkg-info "%PKG_ID%" &amp;&gt; /dev/null; then
+    /usr/sbin/pkgutil --forget "%PKG_ID%"
+fi
+</string>
+        </dict>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>2.7</string>
+    <key>ParentRecipe</key>
+    <string>com.github.dataJAR-recipes.pkg.OxygenXMLAuthor</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/Applications/Oxygen XML Author</string>
+                <key>overwrite</key>
+                <string>true</string>
+                <key>source_path</key>
+                <string>%pathname%/Oxygen XML Author</string>
+            </dict>
+            <key>Processor</key>
+            <string>Copier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>derive_minimum_os_version</key>
+                <string>%DERIVE_MIN_OS%</string>
+                <key>faux_root</key>
+                <string>%RECIPE_CACHE_DIR%</string>
+                <key>installs_item_paths</key>
+                <array>
+                    <string>/Applications/Oxygen XML Author/Oxygen XML Author.app</string>
+                    <string>/Applications/Oxygen XML Author/Diff Directories.app</string>
+                    <string>/Applications/Oxygen XML Author/Diff Files.app</string>
+                    <string>/Applications/Oxygen XML Author/Syncro SVN Client.app</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiInstallsItemsCreator</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%pkg_path%</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+                    <string>%RECIPE_CACHE_DIR%/Applications</string>
+                    <string>%RECIPE_CACHE_DIR%/pkg_root</string>
+                </array>
+            </dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
+        </dict>
+    </array>
+</dict>
+</plist>
