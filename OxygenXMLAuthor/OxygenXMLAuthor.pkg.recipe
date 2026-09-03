@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Comment</key>
+    <string>Creates a macOS installer package for Oxygen XML Author.</string>
+    <key>Description</key>
+    <string>Creates a macOS installer package for Oxygen XML Author.</string>
+    <key>Identifier</key>
+    <string>com.github.dataJAR-recipes.pkg.OxygenXMLAuthor</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>OxygenXMLAuthor</string>
+        <key>PKG_ID</key>
+        <string>ro.sync.exml.Author.installer</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>1.1</string>
+    <key>ParentRecipe</key>
+    <string>com.github.dataJAR-recipes.download.OxygenXMLAuthor</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>input_plist_path</key>
+                <string>%pathname%/Oxygen XML Author/Oxygen XML Author.app/Contents/Info.plist</string>
+                <key>plist_version_key</key>
+                <string>CFBundleShortVersionString</string>
+            </dict>
+            <key>Processor</key>
+            <string>Versioner</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgdirs</key>
+                <dict>
+                    <key>Applications</key>
+                    <string>0755</string>
+                </dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/pkg_root</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/pkg_root/Applications/Oxygen XML Author</string>
+                <key>overwrite</key>
+                <string>true</string>
+                <key>source_path</key>
+                <string>%pathname%/Oxygen XML Author</string>
+            </dict>
+            <key>Processor</key>
+            <string>Copier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>force_pkg_build</key>
+                <string>true</string>
+                <key>install_location</key>
+                <string>/</string>
+                <key>pkg_request</key>
+                <dict>
+                    <key>id</key>
+                    <string>%PKG_ID%</string>
+                    <key>options</key>
+                    <string>purge_ds_store</string>
+                    <key>pkgdir</key>
+                    <string>%RECIPE_CACHE_DIR%</string>
+                    <key>pkgname</key>
+                    <string>%NAME%-%version%</string>
+                    <key>pkgroot</key>
+                    <string>%RECIPE_CACHE_DIR%/pkg_root</string>
+                    <key>version</key>
+                    <string>%version%</string>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>PkgCreator</string>
+        </dict>
+    </array>
+</dict>
+</plist>
